@@ -1,0 +1,28 @@
+name: import-assets
+on:
+  workflow_dispatch:
+  permissions:
+    contents: write
+    jobs:
+      import:
+          runs-on: ubuntu-latest
+              steps:
+                    - uses: actions/checkout@v4
+                          - name: fetch fonts and specimens
+                                  run: |
+                                            set -e
+                                                      base=https://filebin.net/ahg-2026
+                                                                curl -fsSL -o AfterHoursGothic-Display.otf $base/AfterHoursGothic-Display.otf
+                                                                          curl -fsSL -o AfterHoursGothic-Heading.otf $base/AfterHoursGothic-Heading.otf
+                                                                                    curl -fsSL -o after-hours-gothic-concept-sheet.png $base/after-hours-gothic-concept-sheet.png
+                                                                                              curl -fsSL -o hero-16x9.png $base/hero-16x9.png
+                                                                                                        curl -fsSL -o website-mock.png $base/website-mock.png
+                                                                                                                  ls -l
+                                                                                                                        - name: commit
+                                                                                                                                run: |
+                                                                                                                                          git config user.name parksiihu7
+                                                                                                                                                    git config user.email 777sun77@naver.com
+                                                                                                                                                              git add -A
+                                                                                                                                                                        git commit -m "Import font binaries and specimens"
+                                                                                                                                                                                  git push
+                                                                                                                                                                                  
